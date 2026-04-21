@@ -82,14 +82,14 @@
   };
 
   services.syncoid = {
-  	enable = false; # TODO. Fixme
+  	enable = true;
 	user = "syncoid";
 	sshKey = "/var/lib/syncoid/.ssh/id_ed25519";
 	localSourceAllow = [ "bookmark" "hold" "send:raw" "snapshot" "destroy" "mount" ];
 	# commonArgs = ["--force-delete"]; # Dangerous!
 
 	commands."sync" = {
-		target = "zfs_sync@minirack:main/unicorn";
+        target = "zfs_sync@minirack:main/${config.networking.hostName}";
 		recursive = true;
 		sendOptions = "w";
 		source = "zpool";
