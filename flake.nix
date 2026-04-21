@@ -19,6 +19,16 @@
           ./common/configuration.nix
         ];
       };
+
+      "framework" = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = { inherit inputs; inherit neovim-nightly-overlay; };
+
+        modules = [ 
+          ./hosts/framework/configuration.nix 
+          ./common/configuration.nix
+        ];
+      };
     };
   };
 }
