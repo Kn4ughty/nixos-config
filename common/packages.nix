@@ -107,7 +107,10 @@ in
 		pulseaudio # for pactl
 		pavucontrol
 		dua
+        fd
+        neovide
 		firefox
+        zathura
 		chromium
 		hugo
 		qmk-udev-rules
