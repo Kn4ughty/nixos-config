@@ -119,6 +119,8 @@ in
 		arduino-ide
 		arduino-cli
 		netcat
+        socat
+        coproc
 		killall
      		git
 		github-cli
@@ -130,6 +132,7 @@ in
 		signal-desktop
 		cosmic-files
 		kdePackages.dolphin
+        olympus
 		libreoffice-fresh
 		mpv
 		krita

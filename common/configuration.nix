@@ -98,6 +98,16 @@
   systemd.network.wait-online.enable = false;
   boot.initrd.systemd.network.wait-online.enable = false;
 
+  services.avahi = {
+    enable = true;
+    nssmdns = true;
+    openFirewall = true;
+    publish = {
+        enable = true;
+        userServices = true;
+        addresses = true;
+    };
+  };
 
   services.mpd = {
   	enable = true;
