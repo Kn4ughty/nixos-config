@@ -94,6 +94,7 @@ in
      		swayfx
 		swaylock
 		hyprlock
+        hyprpolkitagent
 		swayidle
 		wayvnc
 		slurp
