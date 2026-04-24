@@ -68,6 +68,7 @@ in
 		jq
 		unzip
 		lsof
+        cloc
 		usbutils
 		ffmpeg
 		yt-dlp
@@ -113,6 +114,7 @@ in
         zathura
 		chromium
 		hugo
+        qmk
 		qmk-udev-rules
 		via
 		usbmuxd
@@ -120,11 +122,10 @@ in
 		arduino-cli
 		netcat
         socat
-        coproc
 		killall
-     		git
+        git
 		github-cli
-     		stow
+        stow
 		bibata-cursors
 		obsidian
 		anki-bin
@@ -133,6 +134,7 @@ in
 		cosmic-files
 		kdePackages.dolphin
         olympus
+        osu-lazer-bin
 		libreoffice-fresh
 		mpv
 		krita
