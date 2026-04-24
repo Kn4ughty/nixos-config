@@ -117,6 +117,7 @@ in
 		hugo
         qmk
 		qmk-udev-rules
+        dos2unix
 		via
 		usbmuxd
 		arduino-ide
@@ -162,6 +163,8 @@ in
 	programs.steam = {
 		enable = true;
 	};
+
+    hardware.keyboard.qmk.enable = true;
 
 	programs.nix-ld.enable = true;
 	programs.nix-ld.libraries = with pkgs; [
