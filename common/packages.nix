@@ -80,9 +80,10 @@ in
 		mbuffer
 		upower
 		(python3.withPackages (python-pkgs: with python-pkgs; [
-      			requests
+      		requests
 			watchdog
 			colour
+            hid
 		]))
 		vim
      		wget
@@ -117,6 +118,7 @@ in
 		hugo
         qmk
 		qmk-udev-rules
+        screen
         dos2unix
 		via
 		usbmuxd
