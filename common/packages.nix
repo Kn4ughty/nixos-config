@@ -101,6 +101,8 @@ in
 		slurp
 		grim
 		wl-clipboard-rs
+        wtype
+        wev
 		wlsunset
 		# wayscriber. # its too buggy
      		kitty
