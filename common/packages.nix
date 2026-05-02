@@ -71,6 +71,8 @@ in
         cloc
 		usbutils
 		ffmpeg
+        exiftool
+        flac
 		yt-dlp
 		mpc
 		rmpc
@@ -86,13 +88,14 @@ in
             hid
 		]))
 		vim
-     		wget
+        tree-sitter
+        wget
 		nmap
 		bluetui
-     		hyfetch
+        hyfetch
 		macchina
-     		btop
-     		swayfx
+        btop
+        swayfx
 		swaylock
 		hyprlock
         hyprpolkitagent
@@ -105,7 +108,8 @@ in
         wev
 		wlsunset
 		# wayscriber. # its too buggy
-     		kitty
+        kitty
+        ghostty
 		brightnessctl
 		playerctl
 		wiremix
@@ -151,6 +155,7 @@ in
 		nerd-fonts.jetbrains-mono
 	];
 
+
 	fonts.packages = with pkgs; [
 		nerd-fonts.jetbrains-mono
 		noto-fonts-cjk-sans
@@ -162,6 +167,7 @@ in
 	
 	programs.neovim = {
 		enable = true;
+        defaultEditor = true;
 		package = neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
 	};
 	programs.steam = {
