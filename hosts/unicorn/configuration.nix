@@ -8,6 +8,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      ./keyboard_cava.nix
     ];
 
   # From https://nixos.wiki/wiki/ZFS
@@ -95,6 +96,7 @@
 		source = "zpool";
 	};
   };
+
 
 
 
