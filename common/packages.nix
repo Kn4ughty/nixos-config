@@ -77,6 +77,7 @@ in
 		mpc
 		rmpc
 		mpd-mpris
+        euphonica
 		cava
 		ripgrep
 		mbuffer
@@ -148,6 +149,7 @@ in
 		libreoffice-fresh
 		mpv
 		krita
+        gimp
 		gvfs
 		sshfs
 		distrobox
@@ -173,6 +175,7 @@ in
 	programs.steam = {
 		enable = true;
 	};
+    programs.dconf.enable = true;
 
     hardware.keyboard.qmk.enable = true;
 
