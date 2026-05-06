@@ -103,7 +103,7 @@ def run(interface):
             sample = [i / bytenorm for i in struct.unpack(fmt, data)]
             assert(len(sample) == BARS_NUMBER)
             out = [int(255*i) for i in sample]
-            print(out)
+            # print(out)
             send_raw(interface, out)
             # end_time = time.perf_counter()
             # elapsed_time = (end_time - start_time) * 1000
@@ -131,6 +131,9 @@ in {
 
     serviceConfig = {
       ExecStart = "${keyboardScript}/bin/keyboard-cava";
+
+      Restart="on-failure";
+      RestartSec=10;
 
       NoNewPrivileges = true;
       PrivateTmp = true;
