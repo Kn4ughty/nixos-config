@@ -53,6 +53,7 @@ in
 		lumin
 		eww
 		fish
+        direnv
 		lazygit
 		cargo
 		rustc
