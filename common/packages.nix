@@ -81,6 +81,7 @@ in
         euphonica
 		cava
 		ripgrep
+        bat
 		mbuffer
 		upower
 		(python3.withPackages (python-pkgs: with python-pkgs; [
@@ -150,11 +151,13 @@ in
 		libreoffice-fresh
 		mpv
 		krita
+        blender
         gimp
 		gvfs
 		sshfs
 		distrobox
 		evil-helix
+        wireshark
 		nerd-fonts.jetbrains-mono
 	];
 
@@ -177,6 +180,7 @@ in
 		enable = true;
 	};
     programs.dconf.enable = true;
+    programs.wireshark.enable = true;
 
     hardware.keyboard.qmk.enable = true;
 
