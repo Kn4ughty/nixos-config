@@ -10,10 +10,10 @@ lumin = pkgs.rustPlatform.buildRustPackage {
 		owner = "Kn4ughty";
 		repo = "lumin";
 		rev = "main";
-		hash = "sha256-cCA3DLSOtvxGFKiYBVrgYeLZkjLWlpR5ogm2xHQ6bxw=";
+		hash = "sha256-O7yCs7PU8/fp2CQOND6UyUWKxZ74gSQxHIRcuBB+L74=";
 	};
 
-	cargoHash = "sha256-VG1y4vMyTPpiqa8MYQcarC8ILXzv6f9NQsZqf2EOG4M=";
+	cargoHash = "sha256-LfDrzFKozidp+7gmNSONet7hV2lIRlluwx9KjYZtZb8=";
 
 	nativeBuildInputs = [
 		pkgs.pkg-config
