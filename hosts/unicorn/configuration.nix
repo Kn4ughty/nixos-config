@@ -19,6 +19,7 @@
     efiInstallAsRemovable = true;
     device = "nodev";
   };
+  boot.zfs.forceImportRoot = false;
   boot.loader.efi.canTouchEfiVariables = false;
 
   fileSystems."/" =

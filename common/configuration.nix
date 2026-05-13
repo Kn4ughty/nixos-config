@@ -199,6 +199,7 @@
   };
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
+
   # services.flatpak.enable = true;
   # systemd.services.flatpak-repo = {
   #   wantedBy = [ "multi-user.target" ];

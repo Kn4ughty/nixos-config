@@ -17,6 +17,7 @@
       { devices = [ "nodev"]; path = "/boot"; }
     ];
   };
+  boot.zfs.forceImportRoot = false;
 
   fileSystems."/" =
     { device = "zpool/root";
