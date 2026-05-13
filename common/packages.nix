@@ -1,5 +1,5 @@
 
-{ neovim-nightly-overlay, pkgs, rustPlatform, ...}:
+{ pkgs, rustPlatform, ...}:
 
 let 
 lumin = pkgs.rustPlatform.buildRustPackage {
@@ -180,7 +180,6 @@ in
 	programs.neovim = {
 		enable = true;
         defaultEditor = true;
-		package = neovim-nightly-overlay.packages.${pkgs.stdenv.hostPlatform.system}.default;
 	};
 	programs.steam = {
 		enable = true;

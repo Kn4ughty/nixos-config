@@ -5,14 +5,13 @@
     # i.e. nixos-24.11
     # Use `nix flake update` to update the flake to the latest revision of the chosen release channel.
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    neovim-nightly-overlay.url = "github:nix-community/neovim-nightly-overlay";
   };
 
-  outputs = { self, nixpkgs, neovim-nightly-overlay, ... }@inputs: {
+  outputs = { self, nixpkgs, ... }@inputs: {
     nixosConfigurations = {
       "unicorn" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; inherit neovim-nightly-overlay; };
+        specialArgs = { inherit inputs; };
 
         modules = [ 
           ./hosts/unicorn/configuration.nix 
@@ -22,7 +21,7 @@
 
       "framework" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        specialArgs = { inherit inputs; inherit neovim-nightly-overlay; };
+        specialArgs = { inherit inputs; };
 
         modules = [ 
           ./hosts/framework/configuration.nix 
