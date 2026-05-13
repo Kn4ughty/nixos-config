@@ -121,6 +121,7 @@ if __name__ == '__main__':
         run(interface)
     finally:
         interface.close()
+        sys.exit(1)
   '';
 in {
   environment.systemPackages = [ keyboardScript pkgs.cava ];

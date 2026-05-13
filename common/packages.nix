@@ -61,6 +61,7 @@ in
 		gcc
 		nasm
 		qemu
+        gdb
 		ccls
 		asm-lsp
 		pkg-config
@@ -89,6 +90,7 @@ in
 			watchdog
 			colour
             hid
+            pillow
 		]))
 		vim
         tree-sitter
@@ -147,17 +149,21 @@ in
 		cosmic-files
 		kdePackages.dolphin
         olympus
+        ckan
         osu-lazer-bin
 		libreoffice-fresh
 		mpv
 		krita
-        blender
+        pkgsRocm.blender
+        audacity
         gimp
 		gvfs
 		sshfs
 		distrobox
 		evil-helix
         wireshark
+        rocmPackages.rocm-smi
+        radeontop
 		nerd-fonts.jetbrains-mono
 	];
 
@@ -183,6 +189,8 @@ in
     programs.wireshark.enable = true;
 
     hardware.keyboard.qmk.enable = true;
+
+    nixpkgs.config.rocmSupport = true;
 
 	programs.nix-ld.enable = true;
 	programs.nix-ld.libraries = with pkgs; [
