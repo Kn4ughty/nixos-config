@@ -136,6 +136,7 @@ in
 		arduino-ide
 		arduino-cli
 		netcat
+        localsend
         socat
 		killall
         git
