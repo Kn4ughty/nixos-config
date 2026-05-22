@@ -1,7 +1,7 @@
 {
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    confetti.url = "github:Kn4ughty/confetti";
+    confetti.url = "github:Kn4ughty/tadaa";
   };
 
   outputs = { self, nixpkgs, confetti, ... }@inputs: {

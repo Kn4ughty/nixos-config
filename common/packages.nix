@@ -52,7 +52,7 @@ in
 	environment.systemPackages = with pkgs; [
 		lumin
 		eww
-        inputs.confetti.packages.${pkgs.system}.default
+        # inputs.confetti.packages.${pkgs.system}.default
 		fish
         direnv
 		lazygit
