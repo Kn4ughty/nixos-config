@@ -1,5 +1,5 @@
 
-{ pkgs, rustPlatform, ...}:
+{ pkgs, inputs, rustPlatform, ...}:
 
 let 
 lumin = pkgs.rustPlatform.buildRustPackage {
@@ -52,6 +52,7 @@ in
 	environment.systemPackages = with pkgs; [
 		lumin
 		eww
+        inputs.confetti.packages.${pkgs.system}.default
 		fish
         direnv
 		lazygit
@@ -161,6 +162,7 @@ in
 		krita
         pkgsRocm.blender
         audacity
+        miraclecast
         gimp
 		gvfs
 		sshfs
