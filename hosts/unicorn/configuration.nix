@@ -57,6 +57,16 @@
      randomEncryption = true;
   }];
 
+  fileSystems."/media/2TBHDD" =
+    { device = "/dev/disk/by-uuid/b47bd2c0-6ba6-4902-918f-505e6f79749c";
+      fsType = "ext4";
+    };
+
+  fileSystems."/media/1TB" =
+    { device = "/dev/disk/by-uuid/38392039-c833-4efd-b961-867a1f26fffd";
+      fsType = "ext4";
+    };
+
   boot.zfs.extraPools = [ "zpool" ];
 
   services.zfs.autoScrub.enable = true;

@@ -19,6 +19,7 @@ import subprocess
 import tempfile
 import math
 import json
+import signal
 from colour import Color
 
 BARS_NUMBER = 12
@@ -52,6 +53,18 @@ usage_page    = 0xFF60
 usage         = 0x61
 report_length = 32
 
+process = None
+def signal_handler(sig, frame):
+    global process
+    print("Received termination signal, cleaning up...")
+    if process:
+        process.terminate()
+    sys.exit(0)
+
+# Register the signal handlers
+signal.signal(signal.SIGTERM, signal_handler)
+signal.signal(signal.SIGINT, signal_handler)
+
 def get_raw_hid_interface():
     device_interfaces = hid.enumerate(vendor_id, product_id)
     raw_hid_interfaces = [i for i in device_interfaces if i['usage_page'] == usage_page and i['usage'] == usage]
@@ -77,6 +90,7 @@ def send_raw(interface, data):
 
 
 def run(interface):
+    global process
     with tempfile.NamedTemporaryFile() as config_file:
         config_file.write(config.encode())
         config_file.flush()
@@ -120,6 +134,8 @@ if __name__ == '__main__':
     try:
         run(interface)
     finally:
+        if process:
+            process.kill()
         interface.close()
         sys.exit(1)
   '';
@@ -130,6 +146,8 @@ in {
     wantedBy = [ "default.target" ];
     after = [ "sound.target" ];
 
+    # restartIfChanged = false;
+
     serviceConfig = {
       ExecStart = "${keyboardScript}/bin/keyboard-cava";
 
@@ -138,6 +156,9 @@ in {
 
       NoNewPrivileges = true;
       PrivateTmp = true;
+
+      KillMode = "control-group"; 
+      TimeoutStopSec = 3;
     };
 
   };

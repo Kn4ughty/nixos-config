@@ -199,6 +199,21 @@
       wlr.enable = true;
       config.common.default = "*";
   };
+
+  # xdg.portal = {
+  #     wlr.enable = true;
+  #     enable = true;
+  #     extraPortals = [ 
+  #       pkgs.xdg-desktop-portal-wlr 
+  #       pkgs.xdg-desktop-portal-gnome 
+  #     ];
+  #     config = {
+  #         common = {
+  #             default = [ "gtk" ];
+  #         };
+  #     };
+  # };
+
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
 

@@ -56,6 +56,7 @@ in
         direnv
 		lazygit
 		cargo
+        rustup
 		rustc
 		gnumake
 		gcc
@@ -94,6 +95,7 @@ in
 		]))
 		vim
         tree-sitter
+        qbittorrent
         wget
 		nmap
 		bluetui
@@ -144,12 +146,14 @@ in
         stow
 		bibata-cursors
 		obsidian
+        obs-studio
 		anki-bin
 		vesktop
 		signal-desktop
 		cosmic-files
 		kdePackages.dolphin
         olympus
+        prismlauncher
         ckan
         osu-lazer-bin
 		libreoffice-fresh
