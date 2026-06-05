@@ -35,7 +35,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.d = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "wireshark" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "wireshark" "gamemode" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       tree
     ];
@@ -61,6 +61,7 @@
   # List services that you want to enable:
 
   services.printing.enable = true;
+  services.gvfs.enable = true;
 
   security.rtkit.enable = true;
 
@@ -178,6 +179,7 @@
       enable = true;
       enable32Bit = true;
   };
+  hardware.amdgpu.opencl.enable = true;
 
   hardware.keyboard.qmk.enable = true;
 

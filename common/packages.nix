@@ -46,7 +46,11 @@ eww = pkgs.rustPlatform.buildRustPackage {
 		gtk-layer-shell
 	];
 };
-
+bacon = pkgs.bacon.overrideAttrs (oldAttrs: {
+    cargoBuildFlags = (oldAttrs.cargoBuildFlags or []) ++ [ "--features" "sound" ];
+    buildInputs = (oldAttrs.buildInputs or []) ++ [ pkgs.alsa-lib ];
+    nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.pkg-config ];
+});
 in
 {
 	environment.systemPackages = with pkgs; [
@@ -59,11 +63,14 @@ in
 		cargo
         rustup
 		rustc
+        bacon
 		gnumake
 		gcc
 		nasm
 		qemu
         gdb
+        perf
+        jre
 		ccls
 		asm-lsp
 		pkg-config
@@ -152,8 +159,10 @@ in
 		vesktop
 		signal-desktop
 		cosmic-files
+        yazi
 		kdePackages.dolphin
         olympus
+        gamemode
         prismlauncher
         ckan
         osu-lazer-bin
@@ -166,10 +175,12 @@ in
         gimp
 		gvfs
 		sshfs
+        cifs-utils
 		distrobox
 		evil-helix
         wireshark
         rocmPackages.rocm-smi
+        amdgpu_top
         radeontop
 		nerd-fonts.jetbrains-mono
 	];
@@ -188,11 +199,14 @@ in
 		enable = true;
         defaultEditor = true;
 	};
+    programs.gamemode.enable = true;
 	programs.steam = {
 		enable = true;
+        gamescopeSession.enable = true;
 	};
     programs.dconf.enable = true;
     programs.wireshark.enable = true;
+
 
     hardware.keyboard.qmk.enable = true;
 
