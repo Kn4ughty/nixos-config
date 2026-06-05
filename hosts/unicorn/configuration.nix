@@ -67,6 +67,15 @@
       fsType = "ext4";
     };
 
+  fileSystems."/media/fnas" = {
+    device = "//192.168.42.61/video";
+    fsType = "cifs";
+    options = let
+      # this line prevents hanging on network split
+      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,vers=3.0,uid=1000,gid=100,cache=loose,rsize=131072,wsize=131072,actimeo=30"];
+  };
+
   boot.zfs.extraPools = [ "zpool" ];
 
   services.zfs.autoScrub.enable = true;
