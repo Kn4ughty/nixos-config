@@ -219,6 +219,18 @@
   services.gnome.gnome-keyring.enable = true;
   security.pam.services.login.enableGnomeKeyring = true;
 
+  environment.etc."qemu/bridge.conf" = {
+    text = "allow br0";
+    mode = "0644";
+  };
+
+  security.wrappers.qemu-bridge-helper = {
+    setuid = true;
+    owner = "root";
+    group = "root";
+    source = "${pkgs.qemu}/libexec/qemu-bridge-helper";
+  };
+
   # services.flatpak.enable = true;
   # systemd.services.flatpak-repo = {
   #   wantedBy = [ "multi-user.target" ];

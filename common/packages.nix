@@ -191,6 +191,7 @@ in
 		noto-fonts-cjk-sans
 		noto-fonts
 		noto-fonts-color-emoji
+        nasin-nanpa
 	];
 
 	services.udev.packages = with pkgs; [ via ];
