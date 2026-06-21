@@ -217,9 +217,9 @@ in
 	programs.nix-ld.libraries = with pkgs; [
 		libX11
 		libXcursor
-    		libxcb
-    		libXi
-    		libxkbcommon
+        libxcb
+        libXi
+        libxkbcommon
 		wayland
 		libGL
 		fontconfig
@@ -237,5 +237,6 @@ in
 		libglvnd
 		openssl
 		ghidra-bin
+        libxext
 	];
 }
