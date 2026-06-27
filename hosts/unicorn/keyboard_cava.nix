@@ -127,6 +127,7 @@ def run(interface):
 
 
 if __name__ == '__main__':
+    time.sleep(10)
     interface = get_raw_hid_interface()
     if interface is None:
         sys.exit(1)

@@ -114,6 +114,7 @@ in
 		swaylock
 		hyprlock
         hyprpolkitagent
+        hyprpicker
 		swayidle
 		wayvnc
 		slurp
@@ -164,10 +165,13 @@ in
         olympus
         gamemode
         prismlauncher
+        # lunarclient
         ckan
         osu-lazer-bin
 		libreoffice-fresh
 		mpv
+        unrar-free
+        feh
 		krita
         pkgsRocm.blender
         audacity
@@ -211,7 +215,7 @@ in
 
     hardware.keyboard.qmk.enable = true;
 
-    nixpkgs.config.rocmSupport = true;
+    # nixpkgs.config.rocmSupport = true;
 
 	programs.nix-ld.enable = true;
 	programs.nix-ld.libraries = with pkgs; [
