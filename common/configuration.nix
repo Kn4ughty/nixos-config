@@ -35,7 +35,7 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.d = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "wireshark" "gamemode" ]; # Enable ‘sudo’ for the user.
+    extraGroups = [ "wheel" "wireshark" "gamemode" "video" "render" ];
     packages = with pkgs; [
       tree
     ];

@@ -51,12 +51,28 @@ bacon = pkgs.bacon.overrideAttrs (oldAttrs: {
     buildInputs = (oldAttrs.buildInputs or []) ++ [ pkgs.alsa-lib ];
     nativeBuildInputs = (oldAttrs.nativeBuildInputs or []) ++ [ pkgs.pkg-config ];
 });
+
+    # https://github.com/NixOS/nixpkgs/issues/530702
+blender_wrapped = (pkgs.symlinkJoin {
+      name = "blender_wrapped";
+      paths = [
+        (pkgs.blender.override {
+          waylandSupport = true;
+        })
+      ];
+      buildInputs = [ pkgs.makeWrapper ];
+      postBuild = ''
+        wrapProgram $out/bin/blender \
+          --set LD_PRELOAD "${pkgs.rocmPackages.rocm-comgr}/lib/libamd_comgr.so.3"
+      '';
+    });
 in
 {
 	environment.systemPackages = with pkgs; [
 		lumin
 		eww
         # inputs.confetti.packages.${pkgs.system}.default
+        blender_wrapped
 		fish
         direnv
 		lazygit
@@ -173,7 +189,6 @@ in
         unrar-free
         feh
 		krita
-        pkgsRocm.blender
         audacity
         miraclecast
         gimp
@@ -211,6 +226,7 @@ in
 	};
     programs.dconf.enable = true;
     programs.wireshark.enable = true;
+
 
 
     hardware.keyboard.qmk.enable = true;
