@@ -56,7 +56,7 @@ bacon = pkgs.bacon.overrideAttrs (oldAttrs: {
 blender_wrapped = (pkgs.symlinkJoin {
       name = "blender_wrapped";
       paths = [
-        (pkgs.blender.override {
+        (pkgs.pkgsRocm.blender.override {
           waylandSupport = true;
         })
       ];
@@ -76,9 +76,10 @@ in
 		fish
         direnv
 		lazygit
-		cargo
         rustup
-		rustc
+        # Superseded by rustup
+		# cargo
+		# rustc
         bacon
 		gnumake
 		gcc
@@ -116,6 +117,7 @@ in
 			colour
             hid
             pillow
+            python-mpd2
 		]))
 		vim
         tree-sitter
@@ -196,8 +198,10 @@ in
 		sshfs
         cifs-utils
 		distrobox
+        drm_info
 		evil-helix
         wireshark
+        bottles
         rocmPackages.rocm-smi
         amdgpu_top
         radeontop
