@@ -35,7 +35,10 @@
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.d = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "wireshark" "gamemode" "video" "render" ];
+    extraGroups = [
+        "wheel" "wireshark" "gamemode" "video" 
+        "render" "dialout"
+    ];
     packages = with pkgs; [
       tree
     ];
@@ -199,7 +202,8 @@
   xdg.portal = {
       enable = true;
       wlr.enable = true;
-      config.common.default = "*";
+      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+      config.common.default = [ "gtk" "wlr" ];
   };
 
   # xdg.portal = {
