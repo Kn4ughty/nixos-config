@@ -82,6 +82,7 @@ in
 		# rustc
         bacon
 		gnumake
+        just
 		gcc
 		nasm
 		qemu
