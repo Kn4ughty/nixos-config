@@ -73,6 +73,7 @@ in
 		eww
         # inputs.confetti.packages.${pkgs.system}.default
         blender_wrapped
+        quickshell
 		fish
         direnv
 		lazygit
@@ -181,6 +182,8 @@ in
 		cosmic-files
         yazi
 		kdePackages.dolphin
+        kdePackages.qtdeclarative
+        adwaita-icon-theme
         olympus
         gamemode
         prismlauncher
@@ -216,6 +219,7 @@ in
 		noto-fonts
 		noto-fonts-color-emoji
         nasin-nanpa
+        lexend
 	];
 
 	services.udev.packages = with pkgs; [ via ];

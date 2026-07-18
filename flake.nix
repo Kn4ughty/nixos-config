@@ -2,6 +2,10 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     confetti.url = "github:Kn4ughty/tadaa";
+    quickshell = {
+        url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+        inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, confetti, ... }@inputs: {
