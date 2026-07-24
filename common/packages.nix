@@ -128,9 +128,14 @@ in
 		nmap
 		bluetui
         hyfetch
+        meow
+        cowsay
+        ponysay
 		macchina
         btop
         swayfx
+        hyprlandPlugins.hy3
+        hyprlandPlugins.hypr-dynamic-cursors
 		swaylock
 		hyprlock
         hyprpolkitagent
@@ -233,9 +238,32 @@ in
 		enable = true;
         gamescopeSession.enable = true;
 	};
+
     programs.dconf.enable = true;
+    programs.dconf.profiles.user.databases = [
+      {
+        settings."org/gnome/desktop/interface" = {
+          gtk-theme = "Adwaita";
+          icon-theme = "Flat-Remix-Red-Dark";
+          font-name = "Noto Sans Medium 11";
+          document-font-name = "Noto Sans Medium 11";
+          monospace-font-name = "Noto Sans Mono Medium 11";
+        };
+      }
+    ];
+
     programs.wireshark.enable = true;
 
+
+
+    imports = [inputs.hyprland.nixosModules.default];
+    programs.hyprland = {
+      enable = true;
+      # plugins = with pkgs.hyprlandPlugins; [
+      #   hy3
+      #   hypr-dynamic-cursors
+      # ];
+    };
 
 
     hardware.keyboard.qmk.enable = true;

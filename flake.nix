@@ -6,6 +6,10 @@
         url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
         inputs.nixpkgs.follows = "nixpkgs";
     };
+    hyprland = {
+      url = "github:hyprwm/Hyprland?ref=v0.55.0";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = { self, nixpkgs, confetti, ... }@inputs: {
