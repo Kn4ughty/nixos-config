@@ -134,8 +134,8 @@ in
 		macchina
         btop
         swayfx
-        hyprlandPlugins.hy3
-        hyprlandPlugins.hypr-dynamic-cursors
+        # hyprlandPlugins.hy3
+        #hyprlandPlugins.hypr-dynamic-cursors
 		swaylock
 		hyprlock
         hyprpolkitagent
@@ -214,6 +214,7 @@ in
         rocmPackages.rocm-smi
         amdgpu_top
         radeontop
+        ollama
 		nerd-fonts.jetbrains-mono
 	];
 
@@ -256,14 +257,14 @@ in
 
 
 
-    imports = [inputs.hyprland.nixosModules.default];
-    programs.hyprland = {
-      enable = true;
-      # plugins = with pkgs.hyprlandPlugins; [
-      #   hy3
-      #   hypr-dynamic-cursors
-      # ];
-    };
+    #imports = [inputs.hyprland.nixosModules.default];
+    #programs.hyprland = {
+    #  enable = true;
+    #  # plugins = with pkgs.hyprlandPlugins; [
+    #  #   hy3
+    #  #   hypr-dynamic-cursors
+    #  # ];
+    #};
 
 
     hardware.keyboard.qmk.enable = true;
