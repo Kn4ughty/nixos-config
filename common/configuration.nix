@@ -165,7 +165,7 @@
 
   programs.bash = {
   interactiveShellInit = ''
-    export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+    # export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
     eval "$(ssh-agent -s)"
     if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
     then

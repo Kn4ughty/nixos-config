@@ -66,6 +66,15 @@ blender_wrapped = (pkgs.symlinkJoin {
           --set LD_PRELOAD "${pkgs.rocmPackages.rocm-comgr}/lib/libamd_comgr.so.3"
       '';
     });
+
+anki_wrapped = (pkgs.symlinkJoin {
+  name = "anki_wrapped";
+  paths = [ pkgs.anki-bin ];
+  buildInputs = [ pkgs.makeWrapper ];
+  postBuild = ''
+    wrapProgram $out/bin/anki --set QT_IM_MODULE none
+  '';
+});
 in
 {
 	environment.systemPackages = with pkgs; [
@@ -107,6 +116,7 @@ in
 		mpc
 		rmpc
 		mpd-mpris
+        mpd-discord-rpc
         euphonica
 		cava
 		ripgrep
