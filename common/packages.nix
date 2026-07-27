@@ -106,6 +106,7 @@ in
 		libxkbcommon
 		jq
 		unzip
+        zip
 		lsof
         cloc
 		usbutils
