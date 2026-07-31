@@ -44,7 +44,7 @@
     isNormalUser = true;
     extraGroups = [
         "wheel" "wireshark" "gamemode" "video" 
-        "render" "dialout"
+        "render" "dialout" "openrazer"
     ];
     packages = with pkgs; [
       tree

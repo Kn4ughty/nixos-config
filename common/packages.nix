@@ -219,6 +219,8 @@ in
         cifs-utils
 		distrobox
         drm_info
+        openrazer-daemon
+        polychromatic
 		evil-helix
         wireshark
         bottles
@@ -279,6 +281,7 @@ in
 
 
     hardware.keyboard.qmk.enable = true;
+    hardware.openrazer.enable = true;
 
     # nixpkgs.config.rocmSupport = true;
 
