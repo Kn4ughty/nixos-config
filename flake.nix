@@ -3,8 +3,8 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     confetti.url = "github:Kn4ughty/tadaa";
     quickshell = {
-        url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
-        inputs.nixpkgs.follows = "nixpkgs";
+      url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland = {
       url = "github:hyprwm/Hyprland?ref=v0.55.0";
@@ -12,28 +12,34 @@
     };
   };
 
-  outputs = { self, nixpkgs, confetti, ... }@inputs: {
-    nixosConfigurations = {
-      "unicorn" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+  outputs =
+    {
+      self,
+      nixpkgs,
+      confetti,
+      ...
+    }@inputs:
+    {
+      nixosConfigurations = {
+        "unicorn" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
 
-        modules = [ 
-          ./hosts/unicorn/configuration.nix 
-          ./common/configuration.nix
-        ];
-      };
+          modules = [
+            ./hosts/unicorn/configuration.nix
+            ./common/configuration.nix
+          ];
+        };
 
-      "framework" = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = { inherit inputs; };
+        "framework" = nixpkgs.lib.nixosSystem {
+          system = "x86_64-linux";
+          specialArgs = { inherit inputs; };
 
-        modules = [ 
-          ./hosts/framework/configuration.nix 
-          ./common/configuration.nix
-        ];
+          modules = [
+            ./hosts/framework/configuration.nix
+            ./common/configuration.nix
+          ];
+        };
       };
     };
-  };
 }
-

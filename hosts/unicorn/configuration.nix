@@ -2,14 +2,14 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ config, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./keyboard_cava.nix
-    ];
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./keyboard_cava.nix
+  ];
 
   # From https://nixos.wiki/wiki/ZFS
   boot.loader.grub = {
@@ -22,58 +22,67 @@
   boot.zfs.forceImportRoot = false;
   boot.loader.efi.canTouchEfiVariables = false;
 
-  fileSystems."/" =
-    { device = "zpool/root";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/" = {
+    device = "zpool/root";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/nix" =
-    { device = "zpool/nix";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/nix" = {
+    device = "zpool/nix";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/var" =
-    { device = "zpool/var";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/var" = {
+    device = "zpool/var";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/home" =
-    { device = "zpool/home";
-      fsType = "zfs";
-      options = [ "zfsutil" ];
-    };
+  fileSystems."/home" = {
+    device = "zpool/home";
+    fsType = "zfs";
+    options = [ "zfsutil" ];
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-id/nvme-SPCC_M.2_PCIe_SSD_AA000000000000000433_1-part1";
-      fsType = "vfat";
-      options = [ "fmask=0022" "dmask=0022" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-id/nvme-SPCC_M.2_PCIe_SSD_AA000000000000000433_1-part1";
+    fsType = "vfat";
+    options = [
+      "fmask=0022"
+      "dmask=0022"
+    ];
+  };
 
-  swapDevices = [{
-     device = "/dev/disk/by-partuuid/8e5ec0fb-c19e-470e-85d1-d775d4949190"; 
-     randomEncryption = true;
-  }];
+  swapDevices = [
+    {
+      device = "/dev/disk/by-partuuid/8e5ec0fb-c19e-470e-85d1-d775d4949190";
+      randomEncryption = true;
+    }
+  ];
 
-  fileSystems."/media/2TBHDD" =
-    { device = "/dev/disk/by-uuid/b47bd2c0-6ba6-4902-918f-505e6f79749c";
-      fsType = "ext4";
-    };
+  fileSystems."/media/2TBHDD" = {
+    device = "/dev/disk/by-uuid/b47bd2c0-6ba6-4902-918f-505e6f79749c";
+    fsType = "ext4";
+  };
 
-  fileSystems."/media/1TB" =
-    { device = "/dev/disk/by-uuid/38392039-c833-4efd-b961-867a1f26fffd";
-      fsType = "ext4";
-    };
+  fileSystems."/media/1TB" = {
+    device = "/dev/disk/by-uuid/38392039-c833-4efd-b961-867a1f26fffd";
+    fsType = "ext4";
+  };
 
   fileSystems."/media/fnas" = {
     device = "//192.168.42.61/video";
     fsType = "cifs";
-    options = let
-      # this line prevents hanging on network split
-      automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
-      in ["${automount_opts},credentials=/etc/nixos/smb-secrets,vers=3.0,uid=1000,gid=100,cache=loose,rsize=131072,wsize=131072,actimeo=30"];
+    options =
+      let
+        # this line prevents hanging on network split
+        automount_opts = "x-systemd.automount,noauto,x-systemd.idle-timeout=60,x-systemd.device-timeout=5s,x-systemd.mount-timeout=5s";
+      in
+      [
+        "${automount_opts},credentials=/etc/nixos/smb-secrets,vers=3.0,uid=1000,gid=100,cache=loose,rsize=131072,wsize=131072,actimeo=30"
+      ];
   };
 
   boot.zfs.extraPools = [ "zpool" ];
@@ -84,42 +93,46 @@
   networking.hostId = "d34df33f";
   networking.hostName = "unicorn";
 
-
   services.sanoid = {
-  	enable = true;
+    enable = true;
 
-	templates.production = {
-		hourly = 12;
-		daily = 7;
-		autosnap = true;
-		autoprune = true;
-	};
+    templates.production = {
+      hourly = 12;
+      daily = 7;
+      autosnap = true;
+      autoprune = true;
+    };
 
-	datasets."zpool" = {
-		useTemplate = [ "production" ];
-		recursive = true;
-	};
+    datasets."zpool" = {
+      useTemplate = [ "production" ];
+      recursive = true;
+    };
 
   };
 
   services.syncoid = {
-  	enable = true;
-	user = "syncoid";
-	sshKey = "/var/lib/syncoid/.ssh/id_ed25519";
-	localSourceAllow = [ "bookmark" "hold" "send:raw" "snapshot" "destroy" "mount" ];
-	# commonArgs = ["--force-delete"]; # Dangerous!
+    enable = true;
+    user = "syncoid";
+    sshKey = "/var/lib/syncoid/.ssh/id_ed25519";
+    localSourceAllow = [
+      "bookmark"
+      "hold"
+      "send:raw"
+      "snapshot"
+      "destroy"
+      "mount"
+    ];
+    # commonArgs = ["--force-delete"]; # Dangerous!
 
-	commands."sync" = {
-        target = "zfs_sync@minirack:main/${config.networking.hostName}";
-		recursive = true;
-		sendOptions = "w";
-		source = "zpool";
-	};
+    commands."sync" = {
+      target = "zfs_sync@minirack:main/${config.networking.hostName}";
+      recursive = true;
+      sendOptions = "w";
+      source = "zpool";
+    };
   };
 
-
   hardware.bluetooth.enable = true;
-
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
@@ -146,4 +159,3 @@
   system.stateVersion = "25.11"; # Did you read the comment?
 
 }
-

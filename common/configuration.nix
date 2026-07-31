@@ -2,20 +2,23 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ config, lib, pkgs, ... }:
+{ pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./packages.nix
-    ];
+  imports = [
+    ./packages.nix
+    ./services.nix
+  ];
 
   # https://wiki.hypr.land/Nix/Cachix/
   nix.settings = {
-    substituters = ["https://hyprland.cachix.org"];
-    trusted-substituters = ["https://hyprland.cachix.org"];
-    trusted-public-keys = ["hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="];
-    trusted-users = ["root" "@wheel"];
+    substituters = [ "https://hyprland.cachix.org" ];
+    trusted-substituters = [ "https://hyprland.cachix.org" ];
+    trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+    trusted-users = [
+      "root"
+      "@wheel"
+    ];
   };
 
   # Configure network connections interactively with nmcli or nmtui.
@@ -36,15 +39,17 @@
   #   useXkbConfig = true; # use xkb.options in tty.
   # };
 
-  # Enable touchpad support (enabled default in most desktopManager).
-  services.libinput.enable = true;
-
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.d = {
     isNormalUser = true;
     extraGroups = [
-        "wheel" "wireshark" "gamemode" "video" 
-        "render" "dialout" "openrazer"
+      "wheel"
+      "wireshark"
+      "gamemode"
+      "video"
+      "render"
+      "dialout"
+      "openrazer"
     ];
     packages = with pkgs; [
       tree
@@ -59,10 +64,9 @@
   #   enableSSHSupport = true;
   # };
 
+  security.rtkit.enable = true;
 
-  # Enable the X11 windowing system.
-  #services.xserver.enable = true;
-
+  security.polkit.enable = true;
 
   # Configure keymap in X11
   # services.xserver.xkb.layout = "us";
@@ -70,21 +74,22 @@
 
   # List services that you want to enable:
 
+  services.libinput.enable = true;
+
   services.printing.enable = true;
   services.gvfs.enable = true;
 
-  security.rtkit.enable = true;
-
-  security.polkit.enable = true;
+  # Enable the X11 windowing system.
+  #services.xserver.enable = true;
 
   services.pipewire = {
     enable = true;
     pulse.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-	#    extraConfig = {
-	# pipewire.:
-	#    }
+    #    extraConfig = {
+    # pipewire.:
+    #    }
   };
 
   # Enable the OpenSSH daemon.
@@ -92,19 +97,18 @@
   services.xserver.displayManager.lightdm.enable = false;
   services.displayManager.ly.enable = false;
   services.displayManager.ly.settings = {
-	# https://codeberg.org/fairyglade/ly/src/branch/master/res/config.ini
-  	animation = "colormix";
+    # https://codeberg.org/fairyglade/ly/src/branch/master/res/config.ini
+    animation = "colormix";
   };
-
 
   services.upower.enable = true;
 
   services.syncthing = {
-  	enable = true;
-	openDefaultPorts = true;
-	user = "d";
-	group = "users";
-	dataDir = "/home/d/";    # Default folder for new synced folders
+    enable = true;
+    openDefaultPorts = true;
+    user = "d";
+    group = "users";
+    dataDir = "/home/d/"; # Default folder for new synced folders
   };
 
   services.tlp.enable = true;
@@ -118,22 +122,22 @@
     nssmdns4 = true;
     openFirewall = true;
     publish = {
-        enable = true;
-        userServices = true;
-        addresses = true;
+      enable = true;
+      userServices = true;
+      addresses = true;
     };
   };
 
   services.mpd = {
-  	enable = true;
-	user = "d";
-	settings.music_directory = "/home/d/Music";
-	settings.audio_output = [
-		{
-			type = "pipewire";
-			name = "Pipewire Output";
-		}
-	];
+    enable = true;
+    user = "d";
+    settings.music_directory = "/home/d/Music";
+    settings.audio_output = [
+      {
+        type = "pipewire";
+        name = "Pipewire Output";
+      }
+    ];
   };
   systemd.services.mpd.environment = {
     # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
@@ -141,38 +145,40 @@
   };
   # services.mpd-mpris.enable = true;
   systemd.user.services.mpd-mpris = {
-  	enable = true;
-	description = "mpd-mpris: An implementation of the MPRIS protocol for MPD";
-	after =[ "mpd.service" ];
-	wantedBy = [ "default.target" ];
-	serviceConfig = {
-		ExecStart = "${pkgs.mpd-mpris}/bin/mpd-mpris";
-		Restart = "on-failure";
-		Type = "dbus";
-		BusName = "org.mpris.MediaPlayer2.mpd";
-	};
+    enable = true;
+    description = "mpd-mpris: An implementation of the MPRIS protocol for MPD";
+    after = [ "mpd.service" ];
+    wantedBy = [ "default.target" ];
+    serviceConfig = {
+      ExecStart = "${pkgs.mpd-mpris}/bin/mpd-mpris";
+      Restart = "on-failure";
+      Type = "dbus";
+      BusName = "org.mpris.MediaPlayer2.mpd";
+    };
   };
 
+  #   services.udev.extraRules = ''
+  #   KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  # '';
+  # services.udev.extraRules = ''
+  # KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
+  # '';
 
-#   services.udev.extraRules = ''
-#   KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl" 
-# '';
-# services.udev.extraRules = ''
-# KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-# '';
-
-  nix.settings.experimental-features = [ "flakes" "nix-command" ];
+  nix.settings.experimental-features = [
+    "flakes"
+    "nix-command"
+  ];
 
   programs.bash = {
-  interactiveShellInit = ''
-    # export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
-    eval "$(ssh-agent -s)"
-    if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
-    then
-      shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
-      exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
-    fi
-  '';
+    interactiveShellInit = ''
+      # export LD_LIBRARY_PATH=$NIX_LD_LIBRARY_PATH
+      eval "$(ssh-agent -s)"
+      if [[ $(${pkgs.procps}/bin/ps --no-header --pid=$PPID --format=comm) != "fish" && -z ''${BASH_EXECUTION_STRING} ]]
+      then
+        shopt -q login_shell && LOGIN_OPTION='--login' || LOGIN_OPTION=""
+        exec ${pkgs.fish}/bin/fish $LOGIN_OPTION
+      fi
+    '';
   };
 
   environment.variables = {
@@ -186,8 +192,8 @@
   };
 
   hardware.graphics = {
-      enable = true;
-      enable32Bit = true;
+    enable = true;
+    enable32Bit = true;
   };
   hardware.amdgpu.opencl.enable = true;
 
@@ -202,23 +208,26 @@
   networking.firewall.enable = false;
 
   virtualisation.podman = {
-	enable = true;
-	dockerCompat = true;
+    enable = true;
+    dockerCompat = true;
   };
 
   xdg.portal = {
-      enable = true;
-      wlr.enable = true;
-      extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-      config.common.default = [ "gtk" "wlr" ];
+    enable = true;
+    wlr.enable = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = [
+      "gtk"
+      "wlr"
+    ];
   };
 
   # xdg.portal = {
   #     wlr.enable = true;
   #     enable = true;
-  #     extraPortals = [ 
-  #       pkgs.xdg-desktop-portal-wlr 
-  #       pkgs.xdg-desktop-portal-gnome 
+  #     extraPortals = [
+  #       pkgs.xdg-desktop-portal-wlr
+  #       pkgs.xdg-desktop-portal-gnome
   #     ];
   #     config = {
   #         common = {
@@ -257,4 +266,3 @@
   # accidentally delete configuration.nix.
   # system.copySystemConfiguration = true;
 }
-
