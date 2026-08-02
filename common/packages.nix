@@ -88,6 +88,7 @@ in
     eww
     # inputs.confetti.packages.${pkgs.system}.default
     blender_wrapped
+    anki_wrapped
     quickshell
     fish
     direnv
@@ -198,7 +199,6 @@ in
     bibata-cursors
     obsidian
     obs-studio
-    anki-bin
     vesktop
     signal-desktop
     cosmic-files
