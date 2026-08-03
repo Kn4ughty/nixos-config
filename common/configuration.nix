@@ -225,6 +225,20 @@
     dockerCompat = true;
   };
 
+  nixpkgs.overlays = [
+    (final: prev: {
+      xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (old: rec {
+        version = "0.7.0";
+        src = prev.fetchFromGitHub {
+          owner = "emersion";
+          repo = "xdg-desktop-portal-wlr";
+          rev = "v${version}";
+          hash = "sha256-EwBHkXFEPAEgVUGC/0e2Bae/rV5lec1ttfbJ5ce9cKw=";
+        };
+      });
+    })
+  ];
+
   xdg.portal = {
     enable = true;
     wlr.enable = true;
