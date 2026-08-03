@@ -71,16 +71,16 @@ let
     }
   );
 
-  anki_wrapped = (
-    pkgs.symlinkJoin {
-      name = "anki_wrapped";
-      paths = [ pkgs.anki-bin ];
-      buildInputs = [ pkgs.makeWrapper ];
-      postBuild = ''
-        wrapProgram $out/bin/anki --set QT_IM_MODULE none
-      '';
-    }
-  );
+  # anki_wrapped = (
+  #   pkgs.symlinkJoin {
+  #     name = "anki_wrapped";
+  #     paths = [ pkgs.anki-bin ];
+  #     buildInputs = [ pkgs.makeWrapper ];
+  #     postBuild = ''
+  #       wrapProgram $out/bin/anki --set QT_IM_MODULE none
+  #     '';
+  #   }
+  # );
 in
 {
   environment.systemPackages = with pkgs; [
@@ -88,7 +88,8 @@ in
     eww
     # inputs.confetti.packages.${pkgs.system}.default
     blender_wrapped
-    anki_wrapped
+    # anki_wrapped
+    anki-bin
     quickshell
     fish
     direnv
