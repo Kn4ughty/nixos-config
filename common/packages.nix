@@ -245,6 +245,7 @@ in
     noto-fonts-color-emoji
     nasin-nanpa
     lexend
+    helvetica-neue-lt-std
   ];
 
   services.udev.packages = with pkgs; [ via ];
