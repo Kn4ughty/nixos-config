@@ -138,8 +138,11 @@ in
         hid
         pillow
         python-mpd2
+        python-lsp-server
       ]
     ))
+    jdk8
+    jdt-language-server
     vim
     tree-sitter
     qbittorrent
