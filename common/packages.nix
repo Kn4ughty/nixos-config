@@ -88,8 +88,8 @@ in
     eww
     # inputs.confetti.packages.${pkgs.system}.default
     blender_wrapped
-    # anki_wrapped
-    anki-bin
+    #anki_wrapped
+    anki
     quickshell
     fish
     direnv
