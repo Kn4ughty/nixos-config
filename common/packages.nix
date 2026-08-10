@@ -180,6 +180,7 @@ in
     pavucontrol
     dua
     fd
+    file
     neovide
     firefox
     zathura
