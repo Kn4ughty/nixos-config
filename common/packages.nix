@@ -87,8 +87,9 @@ in
     lumin
     eww
     # inputs.confetti.packages.${pkgs.system}.default
+    bacon
     blender_wrapped
-    #anki_wrapped
+    darktable
     anki
     quickshell
     fish
@@ -96,7 +97,6 @@ in
     lazygit
     rustup
     nil # nix lsp
-    bacon
     gnumake
     just
     gcc
@@ -278,6 +278,8 @@ in
   ];
 
   programs.wireshark.enable = true;
+
+  programs.fish.enable = true;
 
   #imports = [inputs.hyprland.nixosModules.default];
   #programs.hyprland = {
