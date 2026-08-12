@@ -23,6 +23,13 @@
 
   # Configure network connections interactively with nmcli or nmtui.
   networking.networkmanager.enable = true;
+  # networking.firewall.allowedTCPPorts = [ ... ];
+  # networking.firewall.allowedUDPPorts = [ ... ];
+  networking.firewall.enable = false;
+  networking.nameservers = [
+    "1.1.1.1"
+    "1.0.0.1"
+  ];
 
   # Set your time zone.
   time.timeZone = "Australia/Sydney";
@@ -41,6 +48,7 @@
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users.d = {
+    shell = pkgs.fish;
     isNormalUser = true;
     extraGroups = [
       "wheel"
@@ -50,9 +58,6 @@
       "render"
       "dialout"
       "openrazer"
-    ];
-    packages = with pkgs; [
-      tree
     ];
   };
 
@@ -213,12 +218,6 @@
   hardware.keyboard.qmk.enable = true;
 
   nixpkgs.config.allowUnfree = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  networking.firewall.enable = false;
 
   virtualisation.podman = {
     enable = true;
