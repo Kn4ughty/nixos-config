@@ -229,6 +229,7 @@ in
     sshfs
     cifs-utils
     distrobox
+    bolt
     drm_info
     openrazer-daemon
     polychromatic

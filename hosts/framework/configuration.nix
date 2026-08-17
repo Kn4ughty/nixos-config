@@ -85,6 +85,8 @@
 
   };
 
+  services.hardware.bolt.enable = true;
+
   services.syncoid = {
     enable = true;
     user = "syncoid";
