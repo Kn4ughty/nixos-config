@@ -200,6 +200,7 @@ in
     killall
     git
     github-cli
+    git-filter-repo
     stow
     bibata-cursors
     obsidian
@@ -240,14 +241,17 @@ in
     amdgpu_top
     radeontop
     ollama
+    font-manager
     nerd-fonts.jetbrains-mono
   ];
 
   fonts.packages = with pkgs; [
+    noto-fonts
     nerd-fonts.jetbrains-mono
     noto-fonts-cjk-sans
-    noto-fonts
     noto-fonts-color-emoji
+    # maple-mono.NF
+    maple-mono.truetype
     nasin-nanpa
     lexend
     helvetica-neue-lt-std
