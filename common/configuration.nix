@@ -40,6 +40,17 @@
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_AU.UTF-8";
+
+  i18n.inputMethod = {
+    enable = true;
+    type = "ibus";
+    ibus.waylandFrontend = true;
+    ibus.engines = with pkgs.ibus-engines; [
+      table
+      (pkgs.callPackage ./tokipona-table.nix { })
+    ];
+  };
+
   # console = {
   #   font = "Lat2-Terminus16";
   #   keyMap = "us";
