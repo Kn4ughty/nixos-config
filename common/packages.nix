@@ -148,6 +148,7 @@ in
     qbittorrent
     wget
     nmap
+    whois
     bluetui
     hyfetch
     meow
