@@ -100,6 +100,8 @@ in
     gnumake
     just
     gcc
+    cmake
+    gettext
     nasm
     qemu
     gdb
@@ -110,6 +112,7 @@ in
     pkg-config
     wayland
     libxkbcommon
+    rofi
     jq
     unzip
     zip
@@ -326,5 +329,14 @@ in
     openssl
     ghidra-bin
     libxext
+    stdenv.cc.cc.lib
   ];
+
+  systemd.user.targets.sway-session = {
+    description = "sway compositor session";
+    bindsTo = [ "graphical-session.target" ];
+    wants = [ "graphical-session-pre.target" ];
+    after = [ "graphical-session-pre.target" ];
+  };
+
 }

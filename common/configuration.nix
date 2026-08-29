@@ -2,7 +2,7 @@
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
 
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -235,43 +235,29 @@
     dockerCompat = true;
   };
 
-  nixpkgs.overlays = [
-    (final: prev: {
-      xdg-desktop-portal-wlr = prev.xdg-desktop-portal-wlr.overrideAttrs (old: rec {
-        version = "0.7.0";
-        src = prev.fetchFromGitHub {
-          owner = "emersion";
-          repo = "xdg-desktop-portal-wlr";
-          rev = "v${version}";
-          hash = "sha256-EwBHkXFEPAEgVUGC/0e2Bae/rV5lec1ttfbJ5ce9cKw=";
-        };
-      });
-    })
-  ];
-
   xdg.portal = {
     enable = true;
     wlr.enable = true;
-    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    extraPortals = [
+      pkgs.xdg-desktop-portal-gtk
+      pkgs.xdg-desktop-portal-luminous
+    ];
     config.common.default = [
-      "gtk"
+      "luminous"
       "wlr"
+      "gtk"
     ];
   };
+  # https://github.com/nix-community/home-manager/issues/9680
 
-  # xdg.portal = {
-  #     wlr.enable = true;
-  #     enable = true;
-  #     extraPortals = [
-  #       pkgs.xdg-desktop-portal-wlr
-  #       pkgs.xdg-desktop-portal-gnome
-  #     ];
-  #     config = {
-  #         common = {
-  #             default = [ "gtk" ];
-  #         };
-  #     };
-  # };
+  systemd.user.services.xdg-desktop-portal-wlr.serviceConfig.ExecStart = [
+    ""
+    "${pkgs.xdg-desktop-portal-wlr}/libexec/xdg-desktop-portal-wlr --config=${pkgs.writeText "xdpw.ini" ''
+      [screencast]
+      chooser_type=simple
+      chooser_cmd=${pkgs.slurp}/bin/slurp -f 'Monitor: %o' -or
+    ''}"
+  ];
 
   fonts.fontDir.enable = true;
   services.gnome.gnome-keyring.enable = true;
