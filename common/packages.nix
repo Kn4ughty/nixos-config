@@ -259,6 +259,7 @@ in
     nasin-nanpa
     lexend
     helvetica-neue-lt-std
+    liberation_ttf
   ];
 
   services.udev.packages = with pkgs; [ via ];
