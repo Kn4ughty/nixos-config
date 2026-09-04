@@ -240,10 +240,8 @@
     wlr.enable = true;
     extraPortals = [
       pkgs.xdg-desktop-portal-gtk
-      pkgs.xdg-desktop-portal-luminous
     ];
     config.common.default = [
-      "luminous"
       "wlr"
       "gtk"
     ];
