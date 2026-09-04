@@ -116,6 +116,8 @@ in
     jq
     unzip
     zip
+    p7zip
+    bubblewrap
     lsof
     cloc
     usbutils
@@ -226,6 +228,7 @@ in
     mpv
     unrar-free
     feh
+    calibre
     krita
     audacity
     miraclecast
@@ -314,6 +317,7 @@ in
     libxkbcommon
     wayland
     libGL
+    vulkan-headers
     fontconfig
     fribidi
     freetype
@@ -321,6 +325,7 @@ in
     harfbuzz
     libgbm
     libdrm
+    libpng
     libgpg-error
     e2fsprogs
     glib
