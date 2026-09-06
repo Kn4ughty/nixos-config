@@ -248,7 +248,11 @@ in
     amdgpu_top
     radeontop
     ollama
+    android-tools
+    android-studio
+    scrcpy
     font-manager
+    # endpkgs
     nerd-fonts.jetbrains-mono
   ];
 
