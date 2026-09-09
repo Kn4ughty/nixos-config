@@ -2,3 +2,5 @@
 
 sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations +10
 nix-collect-garbage --delete-older-than 7d
+# Running nix-store --optimise (this may take a while)
+time nix-store --optimise
