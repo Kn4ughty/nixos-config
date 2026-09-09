@@ -101,6 +101,11 @@ in
     just
     gcc
     cmake
+    nodejs_22
+    wrangler
+    presenterm
+    pandoc
+    typst
     gettext
     nasm
     qemu
