@@ -228,6 +228,7 @@ in
     mpv
     unrar-free
     feh
+    swayimg
     calibre
     krita
     audacity
@@ -253,6 +254,7 @@ in
     scrcpy
     font-manager
     # endpkgs
+    numbat
     nerd-fonts.jetbrains-mono
   ];
 
@@ -267,6 +269,7 @@ in
     lexend
     helvetica-neue-lt-std
     liberation_ttf
+    inter
   ];
 
   services.udev.packages = with pkgs; [ via ];
