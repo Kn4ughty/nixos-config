@@ -230,6 +230,7 @@ in
     ckan
     osu-lazer-bin
     libreoffice-fresh
+    vscode
     mpv
     unrar-free
     feh
