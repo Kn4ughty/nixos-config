@@ -243,6 +243,7 @@ in
     gvfs
     sshfs
     cifs-utils
+    zfs-prune-snapshots
     distrobox
     bolt
     drm_info
