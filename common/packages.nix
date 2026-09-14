@@ -132,6 +132,7 @@ in
     yt-dlp
     mpc
     rmpc
+    picard
     mpd-mpris
     mpd-discord-rpc
     euphonica
@@ -260,8 +261,9 @@ in
     scrcpy
     lutris
     font-manager
-    # endpkgs
     numbat
+    openssl
+    # endpkgs
     nerd-fonts.jetbrains-mono
   ];
 
