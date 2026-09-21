@@ -230,7 +230,7 @@ in
     # lunarclient
     ckan
     osu-lazer-bin
-    libreoffice-fresh
+    libreoffice
     mpv
     unrar-free
     feh
@@ -240,6 +240,7 @@ in
     audacity
     miraclecast
     gimp
+    aseprite
     gvfs
     sshfs
     cifs-utils
