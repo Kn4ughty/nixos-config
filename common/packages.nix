@@ -152,6 +152,7 @@ in
         python-lsp-server
       ]
     ))
+    uv
     jdk8
     jdt-language-server
     vim
@@ -207,6 +208,7 @@ in
     arduino-ide
     arduino-cli
     netcat
+    dig
     localsend
     socat
     killall
