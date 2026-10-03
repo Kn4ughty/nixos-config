@@ -111,7 +111,7 @@ in
     qemu
     gdb
     perf
-    jre
+    # jre
     ccls
     asm-lsp
     pkg-config
@@ -150,6 +150,9 @@ in
         pillow
         python-mpd2
         python-lsp-server
+        pyscreenshot
+        raylib
+        tkinter
       ]
     ))
     uv

@@ -26,8 +26,8 @@
           specialArgs = { inherit inputs; };
 
           modules = [
-            ./hosts/unicorn/configuration.nix
             ./common/configuration.nix
+            ./hosts/unicorn/configuration.nix
           ];
         };
 
@@ -36,8 +36,8 @@
           specialArgs = { inherit inputs; };
 
           modules = [
-            ./hosts/framework/configuration.nix
             ./common/configuration.nix
+            ./hosts/framework/configuration.nix
           ];
         };
       };

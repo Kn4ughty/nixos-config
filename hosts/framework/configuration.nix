@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, lib, ... }:
 
 {
   imports = [
@@ -113,6 +113,11 @@
   };
 
   hardware.bluetooth.enable = true;
+
+  # Improve battery life
+  services.avahi = {
+    enable = lib.mkForce false;
+  };
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
