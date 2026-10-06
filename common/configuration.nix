@@ -116,9 +116,6 @@
     pulse.enable = true;
     alsa.enable = true;
     alsa.support32Bit = true;
-    #    extraConfig = {
-    # pipewire.:
-    #    }
   };
 
   # Enable the OpenSSH daemon.
@@ -168,11 +165,12 @@
       }
     ];
   };
+
   systemd.services.mpd.environment = {
     # https://gitlab.freedesktop.org/pipewire/pipewire/-/issues/609
     XDG_RUNTIME_DIR = "/run/user/1000";
   };
-  # services.mpd-mpris.enable = true;
+
   systemd.user.services.mpd-mpris = {
     enable = true;
     description = "mpd-mpris: An implementation of the MPRIS protocol for MPD";
@@ -185,13 +183,6 @@
       BusName = "org.mpris.MediaPlayer2.mpd";
     };
   };
-
-  #   services.udev.extraRules = ''
-  #   KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-  # '';
-  # services.udev.extraRules = ''
-  # KERNEL=="hidraw*", SUBSYSTEM=="hidraw", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", MODE="0660", GROUP="users", TAG+="uaccess", TAG+="udev-acl"
-  # '';
 
   nix.settings.experimental-features = [
     "flakes"

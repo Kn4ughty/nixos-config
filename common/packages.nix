@@ -269,6 +269,7 @@ in
     font-manager
     numbat
     openssl
+    easyeffects
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
