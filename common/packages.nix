@@ -54,6 +54,16 @@ let
     nativeBuildInputs = (oldAttrs.nativeBuildInputs or [ ]) ++ [ pkgs.pkg-config ];
   });
 
+  # to update: (where <tag> looks like "2026.1005.0-lazer"
+  # nix store prefetch-file --json https://github.com/ppy/osu/releases/download/<tag>/osu.AppImage | jq -r .hash
+  osu = pkgs.osu-lazer-bin.overrideAttrs (old: rec {
+    version = "2026.1005.0";
+    src = pkgs.fetchurl {
+      url = "https://github.com/ppy/osu/releases/download/${version}-lazer/osu.AppImage";
+      hash = "sha256-KEEI5lNzqDOb7spA4sFLFSjBd71s4eshQHY5+OUI2i4=";
+    };
+  });
+
   # https://github.com/NixOS/nixpkgs/issues/530702
   blender_wrapped = (
     pkgs.symlinkJoin {
@@ -153,6 +163,7 @@ in
         pyscreenshot
         raylib
         tkinter
+        exrex
       ]
     ))
     uv
@@ -234,7 +245,8 @@ in
     prismlauncher
     # lunarclient
     ckan
-    osu-lazer-bin
+    osu
+    # osu-lazer-bin
     libreoffice
     mpv
     unrar-free
@@ -245,6 +257,7 @@ in
     audacity
     miraclecast
     gimp
+    inkscape
     aseprite
     gvfs
     sshfs
@@ -270,6 +283,7 @@ in
     numbat
     openssl
     easyeffects
+    icu
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
@@ -358,6 +372,7 @@ in
     openssl
     ghidra-bin
     libxext
+    icu
     stdenv.cc.cc.lib
   ];
 
