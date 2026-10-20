@@ -10,6 +10,16 @@
     ./services.nix
   ];
 
+  boot.extraModulePackages = [ pkgs.linuxPackages.v4l2loopback ];
+  boot.kernelModules = [
+    "v4l2loopback"
+    "uinput" # for opentablet
+  ];
+
+  boot.extraModprobeConfig = ''
+    options v4l2loopback exclusive_caps=1 card_label="Virtual Camera"
+  '';
+
   # https://wiki.hypr.land/Nix/Cachix/
   nix.settings = {
     substituters = [ "https://hyprland.cachix.org" ];
@@ -277,6 +287,9 @@
     group = "root";
     source = "${pkgs.qemu}/libexec/qemu-bridge-helper";
   };
+
+  hardware.opentabletdriver.enable = true;
+  hardware.uinput.enable = true;
 
   # services.flatpak.enable = true;
   # systemd.services.flatpak-repo = {

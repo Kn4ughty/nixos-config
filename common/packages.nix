@@ -243,6 +243,7 @@ in
     olympus
     gamemode
     prismlauncher
+    vscode
     # lunarclient
     ckan
     osu
@@ -284,6 +285,7 @@ in
     openssl
     easyeffects
     icu
+    linuxPackages.v4l2loopback
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
