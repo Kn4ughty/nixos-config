@@ -286,6 +286,8 @@ in
     easyeffects
     icu
     linuxPackages.v4l2loopback
+    gphoto2
+    appimage-run
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
@@ -345,7 +347,14 @@ in
   hardware.keyboard.qmk.enable = true;
   hardware.openrazer.enable = true;
 
-  # nixpkgs.config.rocmSupport = true;
+  programs.appimage.enable = true;
+  programs.appimage.binfmt = true;
+  programs.appimage.package = pkgs.appimage-run.override {
+    extraPkgs =
+      pkgs: with pkgs; [
+        webkitgtk_4_1
+      ];
+  };
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
@@ -375,6 +384,7 @@ in
     ghidra-bin
     libxext
     icu
+    webkitgtk_4_1
     stdenv.cc.cc.lib
   ];
 
