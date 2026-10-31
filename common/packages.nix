@@ -288,6 +288,7 @@ in
     linuxPackages.v4l2loopback
     gphoto2
     appimage-run
+    tree
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
