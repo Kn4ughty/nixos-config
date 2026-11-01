@@ -6,6 +6,11 @@
       url = "git+https://git.outfoxxed.me/outfoxxed/quickshell";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    lumin = {
+      # url = "git+https://github.com/Kn4ughty/Lumin";
+      url = "path:/home/d/code/Lumin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     hyprland = {
       url = "github:hyprwm/Hyprland?ref=v0.55.0";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -20,6 +25,7 @@
       ...
     }@inputs:
     {
+      nixpkgs.overlays = [ inputs.lumin.overlays.default ];
       nixosConfigurations = {
         "unicorn" = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";

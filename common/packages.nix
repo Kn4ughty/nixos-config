@@ -1,27 +1,6 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 let
-  lumin = pkgs.rustPlatform.buildRustPackage {
-    pname = "lumin";
-    version = "git";
-
-    src = pkgs.fetchFromGitHub {
-      owner = "Kn4ughty";
-      repo = "lumin";
-      rev = "main";
-      hash = "sha256-O7yCs7PU8/fp2CQOND6UyUWKxZ74gSQxHIRcuBB+L74=";
-    };
-
-    cargoHash = "sha256-LfDrzFKozidp+7gmNSONet7hV2lIRlluwx9KjYZtZb8=";
-
-    nativeBuildInputs = [
-      pkgs.pkg-config
-    ];
-
-    buildInputs = with pkgs; [
-      openssl
-    ];
-  };
   eww = pkgs.rustPlatform.buildRustPackage {
     pname = "eww-fork";
     version = "git";
@@ -93,8 +72,8 @@ let
   # );
 in
 {
+  nixpkgs.overlays = [ inputs.lumin.overlays.default ];
   environment.systemPackages = with pkgs; [
-    lumin
     eww
     # inputs.confetti.packages.${pkgs.system}.default
     bacon
@@ -102,6 +81,7 @@ in
     darktable
     anki
     quickshell
+    lumin
     fish
     direnv
     lazygit
