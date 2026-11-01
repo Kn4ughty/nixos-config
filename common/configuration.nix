@@ -104,18 +104,17 @@
   #   enableSSHSupport = true;
   # };
 
-  #services.openssh = {
-  #  enable = true;
-  #  openFirewall = true;
-  #  settings = {
-  #    PasswordAuthentication = false;
-  #    KbdInteractiveAuthentication = false;
-  #    PermitRootLogin = "no";
-  #    AllowUsers = [ "myUser" ];
-  #    MaxAuthTries = 3;
-  #    PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
-  #  };
-  #};
+  services.openssh = {
+    enable = true;
+    openFirewall = true;
+    settings = {
+      PasswordAuthentication = false;
+      KbdInteractiveAuthentication = false;
+      PermitRootLogin = "no";
+      MaxAuthTries = 3;
+      PerSourcePenalties = "crash:3600s authfail:3600s max:86400s";
+    };
+  };
 
   security.rtkit.enable = true;
 
@@ -142,8 +141,6 @@
     alsa.support32Bit = true;
   };
 
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
   services.xserver.displayManager.lightdm.enable = false;
   services.displayManager.ly.enable = false;
   services.displayManager.ly.settings = {
@@ -290,6 +287,18 @@
 
   hardware.opentabletdriver.enable = true;
   hardware.uinput.enable = true;
+
+  # for tablet flashing
+  services.udev.packages = [
+    (pkgs.writeTextFile {
+      name = "lc87-udev-rules";
+      destination = "/etc/udev/rules.d/70-lc87.rules";
+      text = ''
+        KERNEL=="hidraw*", ATTRS{idVendor}=="056a", TAG+="uaccess"
+        SUBSYSTEM=="usb", ATTR{idVendor}=="0ac3", TAG+="uaccess"
+      '';
+    })
+  ];
 
   # services.flatpak.enable = true;
   # systemd.services.flatpak-repo = {
