@@ -259,7 +259,8 @@ in
     android-tools
     android-studio
     scrcpy
-    lutris
+    # Uses gtk2, which is now deprecated and banned from being used. :/
+    # lutris
     font-manager
     numbat
     openssl
@@ -269,6 +270,7 @@ in
     gphoto2
     appimage-run
     tree
+    espeak
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
