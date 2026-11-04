@@ -125,6 +125,7 @@ in
     picard
     mpd-mpris
     mpd-discord-rpc
+    mpdscribble
     euphonica
     cava
     ripgrep
@@ -271,6 +272,9 @@ in
     appimage-run
     tree
     espeak
+    pv
+    net-tools
+    hours
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
