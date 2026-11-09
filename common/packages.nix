@@ -275,6 +275,7 @@ in
     pv
     net-tools
     hours
+    smartmontools
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
