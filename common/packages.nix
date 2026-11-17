@@ -36,10 +36,10 @@ let
   # to update: (where <tag> looks like "2026.1005.0-lazer"
   # nix store prefetch-file --json https://github.com/ppy/osu/releases/download/<tag>/osu.AppImage | jq -r .hash
   osu = pkgs.osu-lazer-bin.overrideAttrs (old: rec {
-    version = "2026.1005.0";
+    version = "2026.1117.0";
     src = pkgs.fetchurl {
       url = "https://github.com/ppy/osu/releases/download/${version}-lazer/osu.AppImage";
-      hash = "sha256-KEEI5lNzqDOb7spA4sFLFSjBd71s4eshQHY5+OUI2i4=";
+      hash = "sha256-TrvLW1gcA28WeFUAr1yNE60ebZMZb9Nr6PJFwqDqHS0=";
     };
   });
 
@@ -93,7 +93,6 @@ in
     cmake
     nodejs_22
     wrangler
-    presenterm
     pandoc
     typst
     gettext
@@ -103,7 +102,7 @@ in
     perf
     # jre
     ccls
-    asm-lsp
+    # asm-lsp
     pkg-config
     wayland
     libxkbcommon
@@ -149,6 +148,7 @@ in
     ))
     uv
     jdk8
+    openjdk17
     jdt-language-server
     vim
     tree-sitter
@@ -268,6 +268,7 @@ in
     easyeffects
     icu
     linuxPackages.v4l2loopback
+    v4l-utils
     gphoto2
     appimage-run
     tree
@@ -346,6 +347,9 @@ in
 
   programs.nix-ld.enable = true;
   programs.nix-ld.libraries = with pkgs; [
+    pipewire
+    pipewire.jack
+    vulkan-loader
     libX11
     libXcursor
     libxcb
