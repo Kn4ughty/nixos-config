@@ -188,9 +188,9 @@
     enable = true;
     nssmdns4 = true;
     openFirewall = true;
-    publish = {
-      enable = true;
-      userServices = true;
+    settings.publish = {
+      disable-publishing = true;
+      disable-user-service-publishing = true;
       addresses = true;
     };
   };
