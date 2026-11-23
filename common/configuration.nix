@@ -191,7 +191,7 @@
     settings.publish = {
       disable-publishing = true;
       disable-user-service-publishing = true;
-      addresses = true;
+      publish-addresses = true;
     };
   };
 
@@ -199,12 +199,42 @@
     enable = true;
     user = "d";
     settings.music_directory = "/home/d/Music";
+    network.listenAddress = "any";
     settings.audio_output = [
       {
         type = "pipewire";
         name = "Pipewire Output";
       }
+      {
+        type = "httpd";
+        name = "mpd stream for";
+        encoder = "lame";
+        port = 9002;
+        bind_to_address = "0.0.0.0";
+        bitrate = 192;
+        format = "44100:16:2";
+        always_on = "yes";
+      }
     ];
+  };
+  services.mpd.settings.include = "${pkgs.writeText "mpd-socket.conf" ''
+    bind_to_address "/run/mpd/socket"
+  ''}";
+
+  services.postgresql = {
+    enable = true;
+    enableTCPIP = true;
+    # port 5432
+    authentication = pkgs.lib.mkOverride 10 ''
+      #type database  DBuser  auth-method
+      local all       all     trust
+
+      # ipv4
+      host  all      all     127.0.0.1/32   trust
+      # ipv6
+      host  all      all     ::1/128        trust
+    '';
+    # package = pkgs.postgresql.pg_config;
   };
 
   systemd.services.mpd.environment = {

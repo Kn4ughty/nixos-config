@@ -140,6 +140,7 @@ in
         pillow
         python-mpd2
         python-lsp-server
+        mutagen
         pyscreenshot
         raylib
         tkinter
@@ -277,6 +278,11 @@ in
     net-tools
     hours
     smartmontools
+    exfat
+    # testdisk
+    # testdisk-qt
+    dbeaver-bin
+    postgresql
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];
