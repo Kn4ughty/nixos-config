@@ -145,6 +145,7 @@ in
         raylib
         tkinter
         exrex
+        subliminal
       ]
     ))
     uv
@@ -283,6 +284,8 @@ in
     # testdisk-qt
     dbeaver-bin
     postgresql
+    libnotify
+    swaynotificationcenter
     # endpkgs
     nerd-fonts.jetbrains-mono
   ];

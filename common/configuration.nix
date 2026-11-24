@@ -214,6 +214,7 @@
         bitrate = 192;
         format = "44100:16:2";
         always_on = "yes";
+        max_clients = 5;
       }
     ];
   };
