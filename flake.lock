@@ -419,11 +419,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1794781613,
-        "narHash": "sha256-p6gKGOj+SlQutxxx+GwCbCo4hmeERKFKV1bqc9uU8Ww=",
+        "lastModified": 1795489267,
+        "narHash": "sha256-r2Y2130I0gBlztb3wamLe0e2nOcklkc5k1N7PBi1CmQ=",
         "ref": "refs/heads/main",
-        "rev": "6e5fed644141f95782fe7299a5aec4bf49c02740",
-        "revCount": 409,
+        "rev": "4411399334725cf069146b80a141a12780195061",
+        "revCount": 410,
         "type": "git",
         "url": "https://github.com/Kn4ughty/Lumin"
       },
@@ -450,11 +450,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1795085501,
-        "narHash": "sha256-S5keGWzaKpuXo9MNoIC2FfTIuTyTnx8P4NhYJMEsTLI=",
+        "lastModified": 1795234589,
+        "narHash": "sha256-f/VVvxf5RsQgWVhUtefoca5ktVg0DA2bnkMOcmSnozo=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "0bb8272318b4ca41bf0edc6224df3e3e3046b70d",
+        "rev": "2786a2a72088ecf32aea5b3ec52099e6a7cff78f",
         "type": "github"
       },
       "original": {

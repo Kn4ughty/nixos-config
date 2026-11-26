@@ -226,7 +226,7 @@ in
     olympus
     gamemode
     prismlauncher
-    vscode
+    # vscode
     # lunarclient
     ckan
     osu
